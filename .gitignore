@@ -27,6 +27,10 @@ data/**/*.*
 # (all should be paired with to another file type by jupytext)
 jupyter_notebooks/**/*.ipynb
 
+# Ignore any venv directories created
+venv*
+env*
+
 # --------------
 
 # Created by https://www.gitignore.io/api/python,jupyternotebooks,visualstudiocode
