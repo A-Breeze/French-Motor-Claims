@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Allow conda to be used in bash
+# Configures the .bashrc, if has not been done already
+conda init bash
