@@ -27,7 +27,7 @@ Using an open source data set of motor insurance claims for learning purposes.
 1. [Trouble-shooting](#Trouble-shooting)
 1. [Further ideas](#Further-ideas)
 
-<p style="text-align:right"><a href="#top">Back to top</a></p>
+<p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Setup
 This document describes how to run the repo using JupyterLab on Binder. To run it locally, skip this section and start from [Running the code locally](#Running-the-code-locally).
@@ -51,7 +51,7 @@ jupyter lab
 
 Now go back to the main [Setup](#Setup) instructions and continue from there.
 
-<p style="text-align:right"><a href="#top">Back to top</a></p>
+<p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Structure of the repo
 The repo is loosely aiming to be structured in a similar way to the standard [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/) repo, although there are some deviations.
@@ -61,7 +61,7 @@ The repo is loosely aiming to be structured in a similar way to the standard [Co
     - Fetching the data: : See [TBA](#TBA).
     - **TODO**: Describe additional scripts.
 
-<p style="text-align:right"><a href="#top">Back to top</a></p>
+<p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Tasks: Research notebooks
 **TODO**: Description.
@@ -93,7 +93,7 @@ Data is required for fitting the model in the `regression_model` package. It is 
 
 ### TBA
 
-<p style="text-align:right"><a href="#top">Back to top</a></p>
+<p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Tasks: CI/CD
 ### Run continuous integration
@@ -101,17 +101,17 @@ Data is required for fitting the model in the `regression_model` package. It is 
 
 ### TBA
 
-<p style="text-align:right"><a href="#top">Back to top</a></p>
+<p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Trouble-shooting
 Various notes about issues I have encountered while coding this project.
 
 ### TBA
 
-<p style="text-align:right"><a href="#top">Back to top</a></p>
+<p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Further ideas
 Rough list of possible future ideas.
 - \[None so far\]
 
-<p style="text-align:right"><a href="#top">Back to top</a></p>
+<p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
