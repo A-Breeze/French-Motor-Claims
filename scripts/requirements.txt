@@ -1,0 +1,4 @@
+# Python pip requirements to be able to use the scripts
+
+# Fetching data from Kaggle using the API package
+kaggle==1.5.6

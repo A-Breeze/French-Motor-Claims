@@ -1,0 +1,9 @@
+# This folder is just a temporary store of downloaded materials.
+# Each file is individually ignored, so that the ignore list acts as
+# a record of what has (at some point) been included.
+# For links to source references, see the README and project documentation.
+
+SSRN-id3164764.pdf
+
+# At the very least, do not ignore this file
+!.gitignore

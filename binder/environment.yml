@@ -1,0 +1,20 @@
+# Specification for Binder environment that will 
+# start up when you open project in Binder.
+# The conda env in Binder will be called "notebook".
+
+name: french_claims_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  # Python version
+  - python==3.6.6
+  - pip==20.0.2
+  # IDE environment
+  - jupyter==1.0.0
+  - notebook==5.5.0
+  - jupyterlab==1.2.6
+  - jupytext==1.4.2
+  # Packages used during development
+  - kaggle==1.5.6
+  - pyprojroot==0.2.0

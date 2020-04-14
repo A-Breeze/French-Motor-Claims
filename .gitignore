@@ -1,3 +1,33 @@
+# ---- Project specific patterns ----
+# Additional ignore patterns for files created by Binder
+.bash_history
+.bash_logout
+.bashrc
+.conda/
+.config/
+.ipython/
+.jupyter/
+.keras/
+.local/
+.npm/
+.profile
+.python_history
+
+# Never commit the Kaggle API key
+.kaggle/kaggle.json
+**/kaggle.json
+kaggle.json
+
+# Ignore all files in the data folder
+# (but keep the folder structure)
+data/**/*.*
+!data/**/*.gitkeep
+
+# Ignore ipynb representations of notebooks
+# (all should be paired with to another file type by jupytext)
+jupyter_notebooks/**/*.ipynb
+
+# --------------
 
 # Created by https://www.gitignore.io/api/python,jupyternotebooks,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=python,jupyternotebooks,visualstudiocode
