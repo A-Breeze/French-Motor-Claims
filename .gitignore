@@ -28,8 +28,8 @@ data/**/*.*
 jupyter_notebooks/**/*.ipynb
 
 # Ignore any venv directories created
-venv*
-env*
+venv*/
+env*/
 
 # --------------
 

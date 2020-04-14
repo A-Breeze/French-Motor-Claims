@@ -16,7 +16,6 @@ Using an open source data set of motor insurance claims for learning purposes.
     - [From Kaggle](#From-Kaggle)
 1. [Tasks: Research notebooks](#Tasks-Research-notebooks)
     - [Create environment: Notebooks](#Create-environment-Notebooks)
-    - [Get data for analysis](#Get-data-for-analysis)
     - [TBA](#TBA)
 1. [Tasks: CI/CD](#Tasks-CICD)
     - [Run continuous integration](#Run-continuous-integration)
@@ -36,14 +35,7 @@ This document describes how to run the repo using JupyterLab on Binder. To run i
 
 All console commands are **run from the root folder of this project** unless otherwise stated.
 
-1. Start a Binder session by clicking the button at the [top](#top). Binder it uses the environment specification in `binder/` to create a conda-env called `notebook` by default. 
-1. From JupyterLab, open a Console (in Linux) and run:
-```
-conda activate notebook
-python -m venv venv
-source venv/bin/activate
-pip install --upgrade pip
-```
+Start a Binder session by clicking the button at the [top](#top). Binder it uses the environment specification in `binder/` to create a conda-env called `notebook` by default. 
 
 ### Running the code locally
 It *should* be possible to clone the repo and run the code in JupyterLab (or another IDE) from your own machine (i.e. not on Binder), but this hasn't been tested. Start the environment *on Windows* by creating the conda-env and starting JupyterLab as follows:
@@ -52,8 +44,6 @@ conda env create -f binder\environment.yml --force
 conda activate french_claims_env
 jupyter lab
 ```
-
-Now go back to the main [Setup](#Setup) instructions and continue from there.
 
 <p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
@@ -68,17 +58,28 @@ The repo is loosely aiming to be structured in a similar way to the standard [Co
 <p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Tasks: Overview
-Each *Tasks* section of this document has a specific `venv` package environment specified by a `requirements.txt`. Each `venv` is named differently (of the form `env*`), so that you can have multiple available at one time. The standard workflow to setup and use a `venv` is:
-```
-conda activate notebook   # Ensure you are in the project's conda-env
-python -m venv name_of_venv   # Create venv
-source name_of_venv/bin/activate   # Activate
-# A venv comes with a specific version of pip, which may not be the latest, so we need to...
-pip install --upgrade pip   # ...upgrade pip in the venv
-pip install -r some_requirements.txt   # Install the specified package versions
-# Now use the venv by running some code
-deactivate   # Exit the venv, back to the 
-```
+Each *Tasks* section of this document has a specific package environment which is one of:
+- a `venv` specified by a `requirements.txt`
+- conda-env specified by an `environment.yml` (and possibly a `requirements.txt`)
+
+In this section, we consider the `venv` option - the conda-env proceeds in an analogous way (but can take slightly longer to load). 
+
+Each `venv` is named differently (of the form `env*`), so that you can have multiple available at one time. The workflow to setup and use each `venv` is given in the relevant *Tasks* section, and follows the pattern:
+1. Setup
+    ```
+    conda activate notebook   # Ensure you are in the project's conda-env
+    python -m venv name_of_venv   # Create venv
+    source name_of_venv/bin/activate   # Activate
+    # A venv comes with a specific version of pip, which may not be the latest, so we need to...
+    pip install --upgrade pip   # ...upgrade pip in the venv
+    pip install -r some_requirements.txt   # Install the specified package versions
+    ```
+1. Use the `venv` to run the code
+1. (Optional) Exit and tidy up
+    ```
+    deactivate   # Exit from the `venv`
+    rm -rf name_of_venv   # Delete it (if you want to save space, or re-build from scratch)
+    ```
 
 In many cases, the tasks listed in this document are are carried out in an automated way by the CI integration (see [Run continuous integration](#Run-continuous-integration)). **TODO**: CI tasks is not complete.
 
@@ -103,13 +104,19 @@ Data from Kaggle is fetched using the Kaggle CLI as follows:
     ```
     python -m venv env_fetch_data
     source env_fetch_data/bin/activate
+    pip install --upgrade pip
+    pip install -r scripts/requirements.txt
     ```
 1. Run the scripts to fetch the data:
     ```
     chmod +x scripts/fetch_kaggle_dataset_main.sh
-    scripts/fetch_kaggle_dataset.sh
+    scripts/fetch_kaggle_dataset_main.sh
     chmod +x scripts/fetch_kaggle_dataset_additional.sh
-    scripts/fetch_kaggle_dataset.sh
+    scripts/fetch_kaggle_dataset_additional.sh
+    ```
+1. Remove the `kaggle.json` file:
+    ```
+    rm -rf .kaggle
     ```
 
 **REMEMBER** to `Expire API Token` on Kaggle (or delete the `kaggle.json` from Binder) after running (because Binder cannot be guaranteed to be secure).
@@ -117,23 +124,30 @@ Data from Kaggle is fetched using the Kaggle CLI as follows:
 <p align="right" style="text-align: right"><a href="#top">Back to top</a></p>
 
 ## Tasks: Research notebooks
-**TODO**: Description.
+Notebooks to analyse the data and iterate. Not designed to be incorporated into an automated pipeline.
+
+#### Link to Kaggle kernels
+The notebooks are designed so that the code can be run in Binder *or* on an accompanying Kaggle kernel. This allows a different method of sharing code and results, and potentially running computationally intensive commands on Kaggle only. To facilitate this: 
+- The environment specification aims to match the package versions present on Kaggle.
+- The notebook code is *manually* kept in sync between the repo and Kaggle kernel.
+
+See the notes in each notebook for link to the accompanying Kaggle kernel.
 
 ### Create environment: Notebooks
-Run the following to create the `venv` and register it as a kernel for use by Jupyter notebooks. 
+Run the following to create the conda-env and register it as a kernel for use in the JupyterLab session:
 ```
-python -m venv env_research
-python -m ipykernel install --user --name env_research
-jupyter kernelspec list
-source env_research/bin/activate
-pip install --upgrade pip
-pip install -r ./jupyter_notebooks/requirements.txt
+conda env create -f jupyter_notebooks/environment.yml --force
+conda activate french_claims_research_env
+/srv/conda/envs/french_claims_research_env/bin/python -m ipykernel install --name french_claims_research_env --prefix /srv/conda/envs/notebook
 ```
+
+The `--prefix` option ensures the new conda-env is registered as a kernel in the `notebook` conda-env (i.e. the conda-env that is running in JupyterLab).
 
 From the JupyterLab *launcher*, you will now see there is an option to start a notebook using the new kernel (it may take a moment for this to take effect).
 
 #### Managing Jupyter kernels
 ```
+conda activate notebook
 jupyter kernelspec list  # Get a list of the available kernels
 jupyter kernelspec remove [kernel name]  # Unregister a kernel
 ```

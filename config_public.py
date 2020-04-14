@@ -11,3 +11,4 @@ import pyprojroot
 # Project structure
 root_dir_path = pyprojroot.here()
 data_dir_path = root_dir_path / 'data'
+raw_data_dir_path = data_dir_path / 'raw'

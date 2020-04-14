@@ -1,0 +1,20 @@
+name: french_claims_research_env
+channel_priority: strict
+channels:
+  - conda-forge
+dependencies:
+  - python==3.6.6
+  - pip==20.0.2
+  # Need ipykernel so this conda-env can be set up as a Jupyter kernel
+  - ipython==6.4.0
+  - ipykernel==5.1.4
+  # Packages chosen to match the Kaggle kernel environment
+  - numpy==1.16.2
+  - pandas==0.23.4
+  - scikit-learn==0.20.3
+  - matplotlib==2.2.3
+  - bokeh==1.0.4
+  - geopandas==0.4.0
+  - geoviews==1.6.1
+  # Additional packages not used on Kaggle
+  - pyprojroot==0.2.0
